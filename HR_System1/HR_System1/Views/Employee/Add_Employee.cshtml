@@ -1,0 +1,132 @@
+﻿@model VmEmployee
+@{
+    ViewData["Title"] = "Add_Employee";
+    Layout = "~/Views/Shared/Layout_Page.cshtml";
+}
+
+<h1>Add_Employee</h1>
+
+@section body{ 
+
+    <form method="post" enctype="multipart/form-data">
+
+
+
+        <div class="container">
+            <div class="row" style="margin-top:10px">
+
+                <input type="hidden" asp-for="employee.ID" />
+
+                <div class="col-lg-1">
+                    <label>Name</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" asp-for="employee.Name" />
+                    <span asp-validation-for="employee.Name"></span>
+                </div>
+
+                <div class="col-lg-1">
+                    <label>Phone</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" asp-for="employee.Phone" />
+                    <span asp-validation-for="employee.Phone"></span>
+                </div>
+
+
+
+            </div>
+
+            <div class="row" style="margin-top:10px">
+                <div class="col-lg-1">
+                    <label >Email</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" asp-for="employee.Email" />
+                    <span asp-validation-for="employee.Email"></span>
+                </div>
+
+                <div class="col-lg-1">
+                    <label >Gender</label>
+                </div>
+
+                <div class="col-lg-2">
+
+                    <select class="form-control" asp-for="employee.Gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+              
+
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+                <div class="col-lg-1">
+                    <label >Birht_Date</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" asp-for="employee.Birth_Date" />
+                </div>
+
+                <div class="col-lg-1">
+                    <label >Photo</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="file" id="img" style="display:none" asp-for="employee.Image" />
+                    <label for="img" class="btn btn-primary">Choose Image</label>
+
+                    
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+                <div class="col-lg-1">
+                    <label>Date of joine</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <input type="text" class="form-control" asp-for="employee.Join_Date" />
+                </div>
+
+                <div class="col-lg-1">
+                    <label>Department</label>
+                </div>
+
+                <div class="col-lg-2">
+                    <select class="form-control" asp-for="employee.Department_id" asp-items='new SelectList(Model.lidepartment,"ID","Name")'>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:10px">
+
+                @if (Convert.ToBoolean(ViewData["edit"]) == false)
+                {
+                    <div class="col-lg-2">
+                        <input type="submit" class="btn btn-primary" value="Save" asp-action="Insert" />
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-2">
+                        <input type="submit" class="btn btn-primary" value="UpDate" asp-action="UpDate" />
+                    </div>
+                }
+
+            </div>
+
+
+
+        </div>
+
+    </form>
+}

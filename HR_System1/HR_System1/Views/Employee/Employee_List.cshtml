@@ -1,0 +1,52 @@
+﻿@model List<Employee>
+@{
+    ViewData["Title"] = "Employee_List";
+    Layout = "~/Views/Shared/Layout_Page.cshtml";
+}
+
+<h1>Employee_List</h1>
+
+@section body{ 
+
+<div class="container">
+    <table class="table table-bordered table-hover table-striped">
+
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Department Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Employee item in Model)
+                {
+                    <tr>
+                        <td>
+                        <img src="@item.Image_Path" style="width:50px;height:50px" />
+                        </td>
+                        <td>@item.Name</td>
+                        <td>@item.Phone</td>
+                        <td>@item.department.Name</td>
+                        <td>
+
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit|</a>
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+        </tbody>
+
+    </table> 
+    <form method="post">
+        <input type="submit" class="btn btn-primary" value="Export To Excel" asp-action="Excel" />
+
+    </form>
+</div>
+
+
+}
+

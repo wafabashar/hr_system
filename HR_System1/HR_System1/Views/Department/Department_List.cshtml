@@ -1,0 +1,40 @@
+﻿@model List<Department>
+@{
+    ViewData["Title"] = "Department_List";
+    Layout = "~/Views/Shared/Layout_Page.cshtml";
+}
+
+<h1>Department_List</h1>
+
+@section body{
+
+    <div class="container">
+        
+        <table class="table table-bordered table-hover table-striped" style="margin-top:10px">
+
+            <thead>
+                <tr>
+                    <th>Name</th>
+                  
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Department item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit|</a>
+                            <a  asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+
+}
+

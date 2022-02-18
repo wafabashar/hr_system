@@ -1,0 +1,101 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using HR_System1.data;
+@inject SignInManager<ApplicationUser> signinManager;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <title>Layout_Page</title>
+
+    @RenderSection("Head", false)
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar-inverse">
+                <div class="navbar-brand">
+                    HR_SYSTEM
+                </div>
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-target="#menu1" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="menu1" class="navbar-collapse collapse">
+                    @if (signinManager.IsSignedIn(User))
+                    {
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a asp-action="New_Employee" asp-controller="Employee">New_Employee</a>
+                        </li>
+                        <li>
+                            <a asp-action="Employee_list" asp-controller="Employee">Employee_List</a>
+                        </li>
+                        <li>
+                            <a asp-action="New_Department" asp-controller="Department">New_Department</a>
+                        </li>
+
+                        <li>
+                            <a asp-action="Department_list" asp-controller="Department">Department_List</a>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a asp-action="New_Role" asp-controller="Account">Add_Role</a>
+                            </li>
+                        }
+
+
+                    </ul>
+                    }
+
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (signinManager.IsSignedIn(User))
+                    {
+                        <li> <a asp-action="LogOut" asp-controller="Account"><span class="glyphicon glyphicon-log-out">&nbsp</span>LogOut</a></li>
+                        <li style="color:white;margin-top:12px">@User.Identity.Name</li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="LogIn_view" asp-controller="Account"><span class="glyphicon glyphicon-log-in">&nbsp</span>Login</a></li>
+
+                    }
+                    <li><a asp-action="SignIn_view" asp-controller="Account"><span class="glyphicon glyphicon-user">&nbsp</span>Sign Up</a> </li>
+
+
+                </ul>
+
+
+                </div>
+
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+
+                @RenderSection("body")
+
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+</html>

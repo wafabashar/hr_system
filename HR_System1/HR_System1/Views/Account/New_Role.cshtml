@@ -1,0 +1,32 @@
+﻿@model RoleModel
+@{
+    ViewData["Title"] = "New_Role";
+    Layout = "~/Views/Shared/Layout_Page.cshtml";
+}
+
+<h1>New_Role</h1>
+@section body{
+
+    <div class="container">
+
+       
+        <div class="row">
+            <div class="col-lg-4">
+                <form method="post">
+
+                    <div class="form-group">
+                        <label class="control-label" asp-for="Name"></label>
+                        <input class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name"></span>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Save" asp-action="Create_Role" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+}
